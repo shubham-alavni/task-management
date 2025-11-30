@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-primary" href="<%= root_path %>">
+      <i class="bi bi-check2-square me-2"></i>Task Management
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if logged_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= tasks_path %>">
+              <i class="bi bi-list-task me-1"></i>My Tasks
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_task_path %>">
+              <i class="bi bi-plus-circle me-1"></i>Add Task
+            </a>
+          </li>
+        <% end %>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <% if logged_in? %>
+          <li class="nav-item d-flex align-items-center">
+            <span class="nav-link text-secondary">
+              <i class="bi bi-person-circle me-1"></i>
+              Signed in as <strong><%= current_user.name %></strong>
+            </span>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Logout", logout_path, data: { turbo_method: :delete, turbo_confirm: "Log out?" }, class: "nav-link text-danger" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign Up", signup_path, class: "nav-link text-success" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Login", login_path, class: "nav-link text-primary" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

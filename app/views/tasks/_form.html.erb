@@ -1,0 +1,26 @@
+<%= form_with(model: task, local: true, html: { class: "card shadow-sm p-4" }) do |f| %>
+  <div class="mb-3">
+    <%= f.label :title, class: "form-label fw-bold" %>
+    <%= f.text_field :title, class: "form-control", required: true, placeholder: "Enter task title" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :description, class: "form-label fw-bold" %>
+    <%= f.text_area :description, class: "form-control", rows: 4, placeholder: "Describe your task..." %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :due_date, class: "form-label fw-bold" %>
+    <%= f.date_field :due_date, class: "form-control", min: Date.today %>
+  </div>
+
+  <div class="form-check form-switch mb-4">
+    <%= f.check_box :completed, class: "form-check-input", role: "switch" %>
+    <%= f.label :completed, "Mark as completed", class: "form-check-label" %>
+  </div>
+
+  <div class="d-grid gap-2">
+    <%= f.submit (task.persisted? ? "Update Task" : "Create Task"), class: "btn btn-primary btn-lg" %>
+    <%= link_to "Cancel", tasks_path, class: "btn btn-outline-secondary" %>
+  </div>
+<% end %>
